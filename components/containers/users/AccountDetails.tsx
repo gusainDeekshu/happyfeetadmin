@@ -712,8 +712,7 @@ const AccountDetails = () => {
                           <tr className="text-center">
                             <th>#</th>
                             <th>App Name</th>
-                            <th>Type</th>
-                            <th>Category</th>
+                            <th>url</th>
                             <th>Action</th>
                           </tr>
                         </thead>

@@ -5,7 +5,7 @@ const  UserProductShow=({ item,index, removeApplication,toggleEdit }: any)=> {
         {index + 1}
       </th>
       <td>{item.appName}</td>
-      <td>{item.appCategory}</td>
+      
       <td>{item.appUrl}</td>
       <td className="text-center">
         <span
