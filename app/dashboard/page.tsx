@@ -5,6 +5,7 @@ import FooterTwo from "@/components/layout/footer/FooterTwo";
 import Header from "@/components/layout/header/Header";
 import InitCustomCursor from "@/components/layout/InitCustomCursor";
 import ScrollProgressButton from "@/components/layout/ScrollProgressButton";
+export const dynamic = 'force-dynamic';
 
 const page = () => {
   return (
