@@ -1,6 +1,7 @@
 
 import mongoose from "mongoose";
-const MONGO_URI = "mongodb://127.0.0.1:27017/TestBase";
+const MONGO_URI = process.env.MONGODB_URI;
+
 
 const connectMongodb = async () => {
   try {
@@ -9,7 +10,6 @@ const connectMongodb = async () => {
       console.log("Database Connected");
     }else{
       console.log("Error in Connection");
-
     }
   } catch (errors) {
     return Promise.reject(errors);

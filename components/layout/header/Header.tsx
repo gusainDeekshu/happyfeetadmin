@@ -57,6 +57,7 @@ const Header = () => {
   const handleOffCanvas = () => {
     setIsOpen(true);
   };
+  
   useEffect(() => {
     const parentItems = document.querySelectorAll(
       ".navbar__item--has-children"

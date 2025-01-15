@@ -1,7 +1,7 @@
 "use client";
 import "react-toastify/dist/ReactToastify.css";
 
-import { toast, ToastContainer } from "react-toastify";
+import {toast} from "react-toastify";
 import Image from "next/image";
 import userProfile from "@/public/images/users/user.png";
 import { useContext, useEffect, useState } from "react";
@@ -278,11 +278,7 @@ const AccountDetails = () => {
               <div>
                 <h6 className="mb-0">Hello,</h6>
                 <p className="mb-0">
-                  {user_data
-                    ? user_data.roles.includes("admin")
-                      ? "admin"
-                      : "user"
-                    : ""}
+                {user_data ? user_data.name:""}
                 </p>
               </div>
             </div>
@@ -369,13 +365,13 @@ const AccountDetails = () => {
                         htmlFor="firstName"
                         className="form-label text-light"
                       >
-                        First Name
+                        Name
                       </label>
                       <input
                         type="text"
                         id="firstName"
                         className="form-control bg-dark text-light border-secondary"
-                        value="Deekshant"
+                        value={user_data ? user_data.name:""} disabled
                       />
                     </div>
                     <div className="col-md-6">
@@ -383,82 +379,17 @@ const AccountDetails = () => {
                         htmlFor="lastName"
                         className="form-label text-light"
                       >
-                        Last Name
+                        Email
                       </label>
                       <input
                         type="text"
                         id="lastName"
                         className="form-control bg-dark text-light border-secondary"
-                        value="Gusain"
+                        value={user_data ? user_data.email:""} disabled
                       />
                     </div>
                   </div>
 
-                  <div className="mb-3">
-                    <label className="form-label text-light">Your Gender</label>
-                    <div className="form-check">
-                      <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        className="form-check-input"
-                        checked
-                      />
-                      <label
-                        htmlFor="male"
-                        className="form-check-label text-light"
-                      >
-                        Male
-                      </label>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        className="form-check-input"
-                      />
-                      <label
-                        htmlFor="female"
-                        className="form-check-label text-light"
-                      >
-                        Female
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="email" className="form-label text-light">
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="form-control bg-dark text-light border-secondary"
-                      value="gusaindeekshant@gmail.com"
-                    />
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="mobile" className="form-label text-light">
-                      Mobile Number
-                    </label>
-                    <input
-                      type="text"
-                      id="mobile"
-                      className="form-control bg-dark text-light border-secondary"
-                      value="+918580486022"
-                    />
-                  </div>
-
-                  <div className="mt-4">
-                    <button type="button" className="btn btn--quaternary me-3">
-                      Deactivate Account
-                    </button>
-                    <button type="button" className="btn btn--quaternary">
-                      Delete Account
-                    </button>
-                  </div>
                 </form>
               </div>
             </div>
