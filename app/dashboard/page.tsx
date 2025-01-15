@@ -1,5 +1,4 @@
 import AccountDetails from "@/components/containers/users/AccountDetails";
-
 import Animations from "@/components/layout/Animations";
 import CommonBanner from "@/components/layout/banner/CommonBanner";
 import FooterTwo from "@/components/layout/footer/FooterTwo";
