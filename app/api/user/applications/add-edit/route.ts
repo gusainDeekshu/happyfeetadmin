@@ -10,11 +10,8 @@ const validator = require('validator');
 // Ensure MongoDB is connected
 connectMongodb().catch((err) => console.log("Database connection error:", err));
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export const runtime = "nodejs"; // Specify the runtime if needed
+
 
 type ValidationErrors = Record<string, string>;
 
