@@ -1,5 +1,5 @@
 // route.ts
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 import connectMongodb from "@/Database/connection";
 import checkUserRole from "@/helpers/helpers";
 import applicationsModel from "@/models/applications";
