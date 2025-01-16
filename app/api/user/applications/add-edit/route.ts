@@ -49,9 +49,9 @@ function validateInput(fields: FormDataFields): ValidationErrors {
 
   
 
-  if (!fields.appUrl || validator.isEmpty(fields.appUrl)) {
-    errors.appUrl = 'URL is required.';
-  }
+  // if (!fields.appUrl || validator.isEmpty(fields.appUrl)) {
+  //   errors.appUrl = 'URL is required.';
+  // }
 
   return errors;
 }

@@ -6,7 +6,7 @@ const  UserProductShow=({ item,index, removeApplication,toggleEdit }: any)=> {
       </th>
       <td>{item.appName}</td>
       
-      <td>{item.appUrl}</td>
+      <td>{item.appUrl?item.appUrl: "--"}</td>
       <td className="text-center">
         <span
           onClick={removeApplication}

@@ -460,7 +460,7 @@ const AccountDetails = () => {
 
                           <div className="mb-3">
                             <label htmlFor="appUrl" className="form-label">
-                              URL *
+                              URL 
                             </label>
                             <input
                               type="text"
@@ -468,7 +468,6 @@ const AccountDetails = () => {
                               name="appUrl"
                               onChange={onChangeHandler}
                               value={data.appUrl}
-                              required
                               className="form-control bg-dark text-light border-secondary"
                               placeholder="Enter app URL"
                             />
