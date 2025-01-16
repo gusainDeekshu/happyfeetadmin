@@ -186,7 +186,7 @@ const AppsSection = () => {
                     <div className="col-12 col-md-6 slide-top" key={item._id}>
                       <div className="category__single topy-tilt">
                         <div className="thumb">
-                          <Link href="product-single" className="thumb-img">
+                          <Link href={`product-single/${item._id}`} className="thumb-img">
                             <Image
                               src={item.appImage}
                               alt="Image hello"
@@ -196,7 +196,7 @@ const AppsSection = () => {
                               priority
                             />
                           </Link>
-                          <Link href="shop" className="tag">
+                          <Link href={`product-single/${item._id}`} className="tag">
                             <Image
                               src={item.appImage}
                               alt="Image"
@@ -209,7 +209,7 @@ const AppsSection = () => {
                         </div>
                         <div className="content">
                           <h5>
-                            <Link href="product-single">{item.appName}</Link>
+                            <Link href={`product-single/${item._id}`}>{item.appName}</Link>
                           </h5>
                         </div>
                         <hr />
