@@ -132,7 +132,7 @@ const AccountDetails = () => {
         setImagePreview(null);
       } else {
         toast.error(result.message);
-        console.log(result.message);
+        // console.log(result.message);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -152,7 +152,7 @@ const AccountDetails = () => {
       const result = await response.json();
       if (result.success) {
         setdata(result.application_Data);
-        console.log(setdata);
+        // console.log(setdata);
         setApp_Id(result.application_Data._id);
       } else {
         toast.error("Error: " + result.message);
@@ -179,7 +179,7 @@ const AccountDetails = () => {
         // Handle successful data fetch
         // Maybe set the applications in state
         setApplicationData(result.application_Data);
-        console.log(result.application_Data);
+        // console.log(result.application_Data);
       } else {
         toast.error("Error: " + result.message);
       }
