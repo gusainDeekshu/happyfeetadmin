@@ -1,13 +1,14 @@
 "use client";
 import "react-toastify/dist/ReactToastify.css";
 
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import Image from "next/image";
 import userProfile from "@/public/images/users/user.png";
 import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "@/components/context/StoreContext";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import UserProductShow from "./UserProductShow";
+import Link from "next/link";
 
 const AccountDetails = () => {
   const [showAddNew, setShowAddNew] = useState(false);
@@ -277,9 +278,7 @@ const AccountDetails = () => {
               />
               <div>
                 <h6 className="mb-0">Hello,</h6>
-                <p className="mb-0">
-                {user_data ? user_data.name:""}
-                </p>
+                <p className="mb-0">{user_data ? user_data.name : ""}</p>
               </div>
             </div>
 
@@ -371,7 +370,8 @@ const AccountDetails = () => {
                         type="text"
                         id="firstName"
                         className="form-control bg-dark text-light border-secondary"
-                        value={user_data ? user_data.name:""} disabled
+                        value={user_data ? user_data.name : ""}
+                        disabled
                       />
                     </div>
                     <div className="col-md-6">
@@ -385,11 +385,11 @@ const AccountDetails = () => {
                         type="text"
                         id="lastName"
                         className="form-control bg-dark text-light border-secondary"
-                        value={user_data ? user_data.email:""} disabled
+                        value={user_data ? user_data.email : ""}
+                        disabled
                       />
                     </div>
                   </div>
-
                 </form>
               </div>
             </div>
@@ -417,8 +417,14 @@ const AccountDetails = () => {
                     {showEdit ? (
                       <>
                         <h3 className="mb-4">Edit App</h3>
+                        <p className="text-white">
+                          <strong>Note</strong>
+                          <span className="text-danger">*</span> The uploaded
+                          image cannot be displayed because this site is
+                          deployed on a free instance. <Link href="contact-us" className="text-primary">Contact Me </Link> if u want to show those images i will add manually 
+                        </p>
                         <form onSubmit={handleSubmit}>
-                          <div className="mb-3">
+                          <div className="mb-3 mt-2">
                             <label htmlFor="appName" className="form-label">
                               App Name *
                             </label>
@@ -567,8 +573,15 @@ const AccountDetails = () => {
                     ) : (
                       <>
                         <h3 className="mb-4">List Your App</h3>
+                        <p className="text-white">
+                          <strong>Note</strong>
+                          <span className="text-danger">*</span> The uploaded
+                          image cannot be displayed because this site is
+                          deployed on a free instance. <Link href="contact-us" className="text-primary">Contact Me </Link> if u want to show those images i will add manually 
+                        </p>
+
                         <form onSubmit={handleSubmit}>
-                          <div className="mb-3">
+                          <div className="mb-3 mt-4">
                             <label htmlFor="appName" className="form-label">
                               App Name
                             </label>
@@ -706,6 +719,7 @@ const AccountDetails = () => {
                   </div>
                 ) : (
                   <div className="cart-t-wrapper mt-4 bg-dark p-4 rounded">
+                    
                     <div className="table-responsive">
                       <table className="table table-dark table-striped table-bordered align-middle">
                         <thead className="thead-light">
