@@ -29,6 +29,7 @@ const ProductDetailsSlider = ({ displayImages }: any) => {
                 alt={`Slide ${index + 1}`}
                 width={500}
                 height={300}
+                style={{ objectFit: "contain" ,maxHeight:"180px"}}
                 priority
               />
             </div>
@@ -59,6 +60,7 @@ const ProductDetailsSlider = ({ displayImages }: any) => {
                 <Image src={imagePath} alt={`Slide ${index + 1}`} 
                 width={500}
                 height={300} 
+                style={{ objectFit: "contain" ,maxHeight:"100px"}}
                 priority />
               </div>
             </SwiperSlide>

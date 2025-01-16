@@ -79,7 +79,7 @@ const ProductDetails = ({ id }: any) => {
                             <div className="paragraph">
                               <p>{item.appDescription}</p>
                             </div>
-                            <div className="paragraph">
+                            <div className="paragraph mt-2">
                               <p>{item.appDetails}</p>
                             </div>
                           </div>

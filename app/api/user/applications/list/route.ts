@@ -31,15 +31,15 @@ export async function GET(request: NextRequest) {
     if (hasRole) {
       if (appId) {
         console.log(appId +"mejhgytgttugyjgtyura");
-        application_Data = await applicationsModel.findById(appId);
+        application_Data = await applicationsModel.findById(appId).sort({ createdAt: -1 });
       } else {
-        application_Data = await applicationsModel.find();
+        application_Data = await applicationsModel.find().sort({ createdAt: -1 });
       }
     } else {
       if (appId) {
-        application_Data = await applicationsModel.findById(appId);
+        application_Data = await applicationsModel.findById(appId).sort({ createdAt: -1 });
       } else {
-        application_Data = await applicationsModel.find({ user_id: userId });
+        application_Data = await applicationsModel.find({ user_id: userId }).sort({ createdAt: -1 });
       }
     }
 

@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(url.searchParams.get("limit") || "10"); // Default to 10 items per page
     const skip = (page - 1) * limit; // Calculate documents to skip
 console.log(page + "=Page");
-    application_Data = await applicationsModel.find().sort({ createdAt: -1 })// Sort by most recent
+    application_Data = await applicationsModel.find().sort({ createdAt: 1 })// Sort by most recent
     .skip(skip)               // Skip documents
     .limit(limit);            // Limit number of documents
     // Find applications for the specific user

@@ -52,12 +52,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Aikeu | Artificial Neural Network AI React NextJs Template",
-  description: "Artificial Neural Network AI React NextJs Template",
+  title: "Deekshant | Portfolio React NextJs",
+  description: "Portfolio React NextJs",
   keywords: [
-    "Artificial",
-    "Ai",
-    "Network",
     "Javascript",
     "Typescript",
     "React",
@@ -65,8 +62,8 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "Pixelaxis",
-      url: "https://themeforest.net/user/pixelaxis",
+      name: "Deekshant",
+      url: "https://portfoliosite-txqj.onrender.com/",
     },
   ],
 };
@@ -79,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" ></script>
+      <link rel="icon" href="/uploads/favicon.png" sizes="any" />
       <StoreContextProvider>
       <body
         className={`${inter.variable} ${poppins.variable} ${montserrat.variable}`}
