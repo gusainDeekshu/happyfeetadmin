@@ -1026,7 +1026,7 @@ span {
   position: relative;
   display: inline-block;
   img {
-    opacity: 0;
+    opacity: 1;
   }
   &::after {
     content: "";

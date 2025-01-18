@@ -61,7 +61,7 @@ const HomeBanner = () => {
             <div className="banner__content text-center">
               <h1 className="title-animation title fs-2 lh-1">
                 HI, I’m <span>Deekshant!</span>{" "}
-                Welcome to my portfolio Web Application
+                Welcome to my portfolio Next.Js Application
               </h1>
             </div>
           </div>
