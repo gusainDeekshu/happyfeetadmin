@@ -39,7 +39,7 @@ const ProductDetails = ({ id }: any) => {
         // Maybe set the applications in state
         setProductData(result.application_Data);
 
-        console.log(result.application_Data);
+        // console.log(result.application_Data);
       } else {
         console.log(result.application_Data);
         // toast.error("Error: " + result.message);

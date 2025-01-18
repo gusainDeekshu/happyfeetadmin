@@ -49,7 +49,7 @@ const StoreContextProvider = ({ children }: StoreContextProviderProps) => {
       } else {
         console.log(response.data.message);
       }
-      console.log("User Data:", response.data.user_data.email);
+      // console.log("User Data:", response.data.user_data.email);
     } catch (err) {
       console.error("Error fetching user data:", err);
     }
