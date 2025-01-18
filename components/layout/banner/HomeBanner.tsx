@@ -59,7 +59,7 @@ const HomeBanner = () => {
         <div className="row justify-content-center">
           <div className="col-12 col-sm-8 col-md-7 col-lg-7 col-xxl-6">
             <div className="banner__content text-center">
-              <h1 className="title-animation fs-2 lh-1">
+              <h1 className="title-animation title fs-2 lh-1">
                 HI, I’m <span>Deekshant!</span>{" "}
                 Welcome to my portfolio Web Application
               </h1>

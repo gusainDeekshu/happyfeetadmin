@@ -527,7 +527,7 @@ const AccountDetails = () => {
                           </div>
                           <div className="mb-3">
                             <label htmlFor="appImages" className="form-label">
-                              Select Images (Max 3)
+                              Select Display Images (Max 3)
                             </label>
                             <input
                               type="file"
