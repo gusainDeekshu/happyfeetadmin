@@ -366,7 +366,7 @@
   overflow-x: clip;
   z-index: 1;
   .title-animation {
-    text-transform: uppercase !important;
+    text-transform: capitalize !important;
     position: relative;
   }
 
