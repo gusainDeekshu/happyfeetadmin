@@ -238,7 +238,7 @@ const AppsSection = () => {
                             href={`product-single/${item._id}`}
                             className="btn btn--quaternary"
                           >
-                            Get Prompts
+                            Full Description
                           </Link>
                         </div>
                       </div>
