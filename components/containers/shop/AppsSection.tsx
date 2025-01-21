@@ -22,6 +22,7 @@ const AppsSection = () => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState(1); // Start with page 1
+  const [isLoading, setIsLoading] = useState(true);
   const [totalPages, setTotalPages] = useState(1); // Total pages
   const itemsPerpage = 4;
   const fetchApplicationData = async (page = 1) => {
@@ -46,6 +47,7 @@ const AppsSection = () => {
         setOriginalData(result.application_Data);
         setCurrentPage(result.currentPage);
         setTotalPages(result.totalPages);
+        setIsLoading(false); // Data has been loaded
       } else {
         toast.error("Error: " + result.message);
       }
@@ -116,6 +118,8 @@ const AppsSection = () => {
     setSelectedFilters(updatedFilters);
   };
 
+  
+
   useEffect(() => {
     // Only fetch if user_data exists
     fetchApplicationData(currentPage);
@@ -127,7 +131,6 @@ const AppsSection = () => {
   }, [searchTerm, selectedFilters]);
 
   const handlePageChange = (page: any) => {
-    
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
@@ -181,70 +184,90 @@ const AppsSection = () => {
           <div className="col-12 col-lg-8">
             <div className="shop__content sticky-item">
               <div className="row gaper">
-                {productData.map((item: any) => {
-                  return (
-                    <div className="col-12 col-md-6 slide-top" key={item._id}>
-                      <div className="category__single topy-tilt">
-                        <div className="thumb">
-                          <Link href={`product-single/${item._id}`} className="thumb-img">
-                            <Image
-                              src={item.appImage}
-                              alt="Image hello"
-                              width={100}
-                              height={100}
-                              style={{ objectFit: "contain" ,maxHeight:"180px"}}
-                              priority
-                            />
-                          </Link>
-                          <Link href={`product-single/${item._id}`} className="tag">
-                            <Image
-                              src={item.appImage}
-                              alt="Image"
-                              width={100}
-                              height={100}
-                              style={{ objectFit: "cover" }}
-                              priority
-                            />
-                          </Link>
-                        </div>
-                        <div className="content">
-                          <h5>
-                            <Link href={`product-single/${item._id}`}>{item.appName}</Link>
-                          </h5>
-                        </div>
-                        <hr />
-                        <div className="meta">
-                          <div className="meta-info">
-                            <div className="meta-thumb">
+                {isLoading ? ( // Check if the data is still loading
+                 <div className="loading-spinner d-flex flex-column align-items-center justify-content-center">
+                 <div className="spinner-border text-primary" role="status" style={{ width: "3rem", height: "3rem" }}>
+                   <span className="visually-hidden">Loading...</span>
+                 </div>
+                 <p className="mt-3 text-secondary">Loading...</p>
+               </div>
+               
+                ) : (
+                  productData.map((item: any) => {
+                    return (
+                      <div className="col-12 col-md-6 slide-top" key={item._id}>
+                        <div className="category__single topy-tilt">
+                          <div className="thumb">
+                            <Link
+                              href={`product-single/${item._id}`}
+                              className="thumb-img"
+                            >
+                              <Image
+                                src={item.appImage}
+                                alt="Image hello"
+                                width={100}
+                                height={100}
+                                style={{
+                                  objectFit: "contain",
+                                  maxHeight: "180px",
+                                }}
+                                priority
+                              />
+                            </Link>
+                            <Link
+                              href={`product-single/${item._id}`}
+                              className="tag"
+                            >
                               <Image
                                 src={item.appImage}
                                 alt="Image"
-                                priority
                                 width={100}
                                 height={100}
                                 style={{ objectFit: "cover" }}
+                                priority
                               />
+                            </Link>
+                          </div>
+                          <div className="content">
+                            <h5>
+                              <Link href={`product-single/${item._id}`}>
+                                {item.appName}
+                              </Link>
+                            </h5>
+                          </div>
+                          <hr />
+                          <div className="meta">
+                            <div className="meta-info">
+                              <div className="meta-thumb">
+                                <Image
+                                  src={item.appImage}
+                                  alt="Image"
+                                  priority
+                                  width={100}
+                                  height={100}
+                                  style={{ objectFit: "cover" }}
+                                />
+                              </div>
+                              <p className="tertiary-text">
+                                {item.appDescription?.length > 20
+                                  ? `${item.appDescription.slice(0, 20)}...`
+                                  : item.appDescription}
+                              </p>
                             </div>
-                            <p className="tertiary-text">
-                              {" "}
-                              {item.appDescription?.length > 20
-                                ? `${item.appDescription.slice(0, 20)}...`
-                                : item.appDescription}
-                            </p>
+                          </div>
+                          <div className="cta">
+                            <Link
+                              href={`product-single/${item._id}`}
+                              className="btn btn--quaternary"
+                            >
+                              Full Description
+                            </Link>
                           </div>
                         </div>
-                        <div className="cta">
-                          <Link
-                            href={`product-single/${item._id}`}
-                            className="btn btn--quaternary"
-                          >
-                            Full Description
-                          </Link>
-                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                )}
               </div>
               <div className="row">
                 <div className="col-12">
@@ -258,23 +281,21 @@ const AppsSection = () => {
                           <i className="fa-solid fa-angle-left"></i>
                         </button>
                       </li>
-                    
-                        {Array.from({ length: totalPages }, (_, index) => (
-                         <li  key={index}> <button
-                           
+
+                      {Array.from({ length: totalPages }, (_, index) => (
+                        <li key={index}>
+                          {" "}
+                          <button
                             onClick={() => handlePageChange(index + 1)}
                             className={`btn ${
-                              currentPage === index + 1
-                                ? "active"
-                                : ""
+                              currentPage === index + 1 ? "active" : ""
                             } mx-1`}
                           >
                             {index + 1}
                           </button>
-                          </li>
-                        ))}
-                      
-                     
+                        </li>
+                      ))}
+
                       <li>
                         <button
                           onClick={() => handlePageChange(currentPage + 1)}

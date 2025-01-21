@@ -21,6 +21,7 @@ interface AppData {
 const ProductDetails = ({ id }: any) => {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
   const [productData, setProductData] = useState<AppData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchApplicationData = async () => {
     try {
@@ -38,6 +39,7 @@ const ProductDetails = ({ id }: any) => {
         // Handle successful data fetch
         // Maybe set the applications in state
         setProductData(result.application_Data);
+        setIsLoading(false); // Data has been loaded
 
         // console.log(result.application_Data);
       } else {
@@ -58,7 +60,16 @@ const ProductDetails = ({ id }: any) => {
 
   return (
     <>
-      {(Array.isArray(productData) ? productData : [productData]).map((item: any) => {
+      {isLoading ? ( // Check if the data is still loading
+                                  <div className="loading-spinner d-flex flex-column align-items-center justify-content-center">
+
+                 <div className="spinner-border text-primary" role="status" style={{ width: "3rem", height: "3rem" }}>
+                   <span className="visually-hidden">Loading...</span>
+                 </div>
+                 <p className="mt-3 text-secondary">Loading...</p>
+               </div>
+               
+                ):(Array.isArray(productData) ? productData : [productData]).map((item: any) => {
           return (
             <section className="section pb-0 p-details" key={item._id}>
               <div className="container">
