@@ -14,7 +14,7 @@ const Craft = () => {
               <h2 className="title title-animation">Full Stack Developer</h2>
               <p>
                 Proficient in developing web applications using <b>ReactJS</b>,
-                <b>NextJS</b>, <b>NodeJS</b>, and <b>Laravel</b>, with expertise in integrating <b>APIs</b>,
+                <b>NextJS</b>, <b>NodeJS</b> with expertise in integrating <b>APIs</b>,
                 state management, and responsive design. Skilled in working with
                 various databases like <b>MySQL</b>, <b>MongoDB</b>, and <b>PostgresSql</b>. <br></br><br></br>
 
@@ -23,8 +23,7 @@ const Craft = () => {
                 and problem-solving, applying AJAX, GraphQL, and Docker for
                 efficient development and deployment. <br></br><br></br>
                 Adept at quickly
-                mastering new programming languages and frameworks, with a
-                strong ability to adapt to evolving technologies and tools.
+                Played a key role in a dynamic <b>startup environment</b>, contributing to rapid application development, scalability, and innovation in a fast-paced, collaborative setting. Adept at quickly mastering new programming languages and frameworks, with a strong ability to adapt to evolving technologies and tools.
               </p>
               <div className="section__content-cta">
                 <Link

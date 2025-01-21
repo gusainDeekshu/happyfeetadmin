@@ -14,8 +14,7 @@ const page = () => {
       <main>
         <HomeBanner />
         <TextSlider />
-        <Craft />
-        
+        <Craft />       
       </main>
       <Footer />
       <InitCustomCursor />
