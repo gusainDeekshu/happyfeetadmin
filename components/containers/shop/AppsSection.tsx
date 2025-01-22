@@ -26,6 +26,7 @@ const AppsSection = () => {
   const [totalPages, setTotalPages] = useState(1); // Total pages
   const itemsPerpage = 4;
   const fetchApplicationData = async (page = 1) => {
+    setIsLoading(true);
     try {
       let response;
       response = await fetch(
@@ -76,6 +77,7 @@ const AppsSection = () => {
     }
   };
   const filterApplicationData = () => {
+    setIsLoading(true);
     let filteredData = originalData;
 
     // Apply text search filter
@@ -93,7 +95,7 @@ const AppsSection = () => {
         selectedFilters.includes(item.user_id)
       );
     }
-
+    setIsLoading(false);
     setProductData(filteredData);
   };
 
