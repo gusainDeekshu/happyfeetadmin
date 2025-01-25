@@ -26,7 +26,6 @@ const ProductDetails = ({ id }: any) => {
   const fetchApplicationData = async () => {
      // Data has been loaded
      setIsLoading(true); // Data has been loaded
-
     try {
       let response;
       response = await fetch(`/api/user/applications/list/productData`, {
