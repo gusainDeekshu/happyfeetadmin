@@ -12,6 +12,7 @@ import {
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
+import { Plus, Trash2 } from 'lucide-react';
 
 export default function PackageDashboard() {
   const { fetchAll, create, update, remove } = useTravelContent('packages');
@@ -20,6 +21,9 @@ export default function PackageDashboard() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   
+  // 1. New State for Itinerary
+  const [itinerary, setItinerary] = useState([{ day: 1, title: '', description: '' }]);
+
   const [formData, setFormData] = useState({
     title: '', slug: '', description: '', price: 0, 
     duration: '', location: '', image: '', category: 'Group Tour',
@@ -29,11 +33,30 @@ export default function PackageDashboard() {
     return title.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
   };
 
+  // 2. Updated handleEdit to load itinerary
   const handleEdit = (pkg: any) => {
     setFormData({ ...pkg });
+    setItinerary(pkg.itinerary || [{ day: 1, title: '', description: '' }]);
     setEditingId(pkg._id);
     setIsAdding(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // 3. Itinerary Helper Functions
+  const addDay = () => {
+    setItinerary([...itinerary, { day: itinerary.length + 1, title: '', description: '' }]);
+  };
+
+  const removeDay = (index: number) => {
+    const newItin = itinerary.filter((_, i) => i !== index)
+                             .map((item, i) => ({ ...item, day: i + 1 })); // Re-index days
+    setItinerary(newItin);
+  };
+
+  const updateItineraryItem = (index: number, field: string, value: any) => {
+    const newItin = [...itinerary];
+    newItin[index] = { ...newItin[index], [field]: value };
+    setItinerary(newItin);
   };
 
   const handleDelete = async (id: string) => {
@@ -54,17 +77,20 @@ export default function PackageDashboard() {
     }
   };
 
+  // 4. Updated handleSubmit to include itinerary
   const handleSubmit = async () => {
     if (!formData.image || !formData.title || !formData.description || !formData.duration) {
       alert("All fields (Title, Duration, Description, and Image) are required!");
       return;
     }
 
+    const payload = { ...formData, itinerary };
+
     try {
       if (editingId) {
-        await update.mutateAsync({ id: editingId, data: formData });
+        await update.mutateAsync({ id: editingId, data: payload });
       } else {
-        await create.mutateAsync(formData);
+        await create.mutateAsync(payload);
       }
       resetForm();
     } catch (error) {
@@ -75,6 +101,7 @@ export default function PackageDashboard() {
   const resetForm = () => {
     setIsAdding(false);
     setEditingId(null);
+    setItinerary([{ day: 1, title: '', description: '' }]);
     setFormData({ 
       title: '', slug: '', description: '', price: 0, 
       duration: '', location: '', image: '', category: 'Group Tour' 
@@ -93,8 +120,9 @@ export default function PackageDashboard() {
       </div>
 
       {isAdding && (
-        <div className="p-6 border-2 border-blue-100 rounded-2xl bg-white shadow-sm space-y-6">
+        <div className="p-6 border-2 border-blue-100 rounded-2xl bg-white shadow-sm space-y-6 max-h-[85vh] overflow-y-auto">
           <h2 className="text-xl font-semibold">{editingId ? 'Edit Package' : 'Create New Package'}</h2>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <Input 
@@ -124,12 +152,11 @@ export default function PackageDashboard() {
                 onChange={(e) => setFormData({...formData, location: e.target.value})} 
               />
               <Textarea 
-                placeholder="Description" value={formData.description}
+                placeholder="Package Overview Description" value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})} 
               />
             </div>
 
-            {/* PREVIEW SECTION */}
             <div className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-4 bg-gray-50 min-h-[300px]">
               {formData.image ? (
                 <div className="relative w-full h-full min-h-[250px]">
@@ -156,8 +183,55 @@ export default function PackageDashboard() {
             </div>
           </div>
 
+          {/* 5. ITINERARY BUILDER UI */}
+          <div className="space-y-4 border-t pt-6">
+            <div className="flex justify-between items-center">
+              <h3 className="text-lg font-bold text-blue-900">Itinerary Plan</h3>
+              <Button type="button" variant="outline" size="sm" onClick={addDay}>
+                <Plus className="w-4 h-4 mr-1" /> Add Day
+              </Button>
+            </div>
+            
+            <div className="space-y-4">
+              {itinerary.map((item, index) => (
+                <div key={index} className="p-4 border rounded-xl bg-slate-50 relative group">
+                  <Button 
+                    variant="ghost" size="icon" 
+                    className="absolute top-2 right-2 text-red-400 opacity-0 group-hover:opacity-100 transition-opacity"
+                    onClick={() => removeDay(index)}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="md:col-span-1">
+                      <label className="text-xs font-bold text-gray-400">Day</label>
+                      <Input type="number" value={item.day} readOnly className="bg-gray-100" />
+                    </div>
+                    <div className="md:col-span-3">
+                      <label className="text-xs font-bold text-gray-400">Day Title</label>
+                      <Input 
+                        placeholder="e.g. Arrival & Sightseeing" 
+                        value={item.title}
+                        onChange={(e) => updateItineraryItem(index, 'title', e.target.value)}
+                      />
+                    </div>
+                    <div className="md:col-span-4">
+                      <label className="text-xs font-bold text-gray-400">Day Activities</label>
+                      <Textarea 
+                        placeholder="Description of the day's events..." 
+                        value={item.description}
+                        onChange={(e) => updateItineraryItem(index, 'description', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <Button onClick={handleSubmit} className="w-full bg-green-600 hover:bg-green-700 h-12 text-lg font-bold">
-            {editingId ? 'Update Package' : 'Save Complete Package'}
+            {editingId ? 'Update Complete Package' : 'Save Complete Package'}
           </Button>
         </div>
       )}
