@@ -1,9 +1,10 @@
+//src\components\ui\image-upload.tsx
 'use client';
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Loader2, Trash2, UploadCloud, Image as ImageIcon } from 'lucide-react';
-import { uploadImage } from '@/services/api';
+// import { uploadImage } from '@/services/api';
 
 interface ImageUploadProps {
   value: string; // The current Image URL
@@ -20,9 +21,9 @@ export default function ImageUpload({ value, onChange, onRemove }: ImageUploadPr
     setIsUploading(true);
     try {
       // 1. Send file to backend
-      const url = await uploadImage(e.target.files[0]);
+      // const url = await uploadImage(e.target.files[0]);
       // 2. Update parent form with the new URL
-      onChange(url);
+      // onChange(url);
     } catch (error) {
       console.error("Upload failed", error);
       alert('Upload failed. Please try again.');
