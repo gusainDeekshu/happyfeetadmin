@@ -63,7 +63,7 @@ export const useInquiriesInfinite = (
     initialPageParam: 1,
 
     queryFn: async ({ pageParam = 1 }) => {
-      const { data } = await api.get('/inquiries', {
+      const { data } = await api.get('/contact/inquiries', {
         params: {
           page: pageParam,
           limit: 15,

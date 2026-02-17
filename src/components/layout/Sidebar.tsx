@@ -31,14 +31,14 @@ export default function Sidebar() {
 
   // Menu Configuration
   const mainNavItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
+    // { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
     { icon: MessageSquare, label: 'Inquiries', href: '/inquiries' },
   ];
 
   const contentNavItems = [
     { icon: FolderKanban, label: 'Projects', href: '/projects' },
     { icon: Package, label: 'Products', href: '/products' },
-    { icon: Wrench, label: 'Services', href: '/services' },
+    // { icon: Wrench, label: 'Services', href: '/services' },
     { icon: Tags, label: 'Categories', href: '/categories' },
   ];
 

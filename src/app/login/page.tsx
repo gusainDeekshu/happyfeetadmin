@@ -48,7 +48,7 @@ export default function AdminLogin() {
       }
       
       // Redirect to Dashboard
-      router.push('/');
+      router.push('/inquiries');
       
     } catch (err) {
       const error = err as AxiosError<ApiErrorResponse>;

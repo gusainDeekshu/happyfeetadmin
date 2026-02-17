@@ -30,11 +30,11 @@ interface AdminLayoutProps {
 
 // --- Menu Config ---
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
+  // { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
   { icon: MessageSquare, label: 'Enquiries', href: '/inquiries' },
   { icon: Plane, label: 'Packages', href: '/packages' }, 
   { icon: Image, label: 'Travel Gallery', href: '/gallery' }, 
-  { icon: Wrench, label: 'Services', href: '/services' },
+  // { icon: Wrench, label: 'Services', href: '/services' },
 ];
 
 
@@ -112,6 +112,18 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             </Link>
           ))}
         </nav>
+
+  {/* Logout Section */}
+  <div className="p-4 border-t border-white/10">
+    <button
+      onClick={handleLogout}
+      className="w-full flex items-center gap-3 px-4 py-3 rounded-lg 
+                 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition"
+    >
+      <X size={20} />
+      Logout
+    </button>
+  </div>
       </aside>
       <main className="flex-1 p-8 bg-slate-50">{children}</main>
     </div>
