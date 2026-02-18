@@ -26,16 +26,16 @@ function isInfiniteData(
 }
 
 export default function DashboardPage() {
-  const products = useContent('products');
-  const services = useContent('services');
-  const projects = useContent('projects');
+  // const products = useContent('products');
+  // const services = useContent('services');
+  // const projects = useContent('projects');
 
   const inquiriesQuery = useInquiries();
 
   const isLoading =
-    products.fetchAll.isLoading ||
-    services.fetchAll.isLoading ||
-    projects.fetchAll.isLoading ||
+    // products.fetchAll.isLoading ||
+    // services.fetchAll.isLoading ||
+    // projects.fetchAll.isLoading ||
     inquiriesQuery.isLoading;
 
   /* ---------------------------------------------
@@ -76,27 +76,27 @@ const inquiries: Inquiry[] = useMemo(() => {
 
 
   const stats = [
-    {
-      title: "Active Products",
-      value: products.fetchAll.data?.length ?? 0,
-      icon: Package,
-      desc: "Product pages live",
-      color: "text-blue-600",
-    },
-    {
-      title: "Service Offerings",
-      value: services.fetchAll.data?.length ?? 0,
-      icon: Wrench,
-      desc: "Services pages live",
-      color: "text-purple-600",
-    },
-    {
-      title: "Projects Showcase",
-      value: projects.fetchAll.data?.length ?? 0,
-      icon: FolderKanban,
-      desc: "Portfolio items",
-      color: "text-green-600",
-    },
+    // {
+    //   title: "Active Products",
+    //   value: products.fetchAll.data?.length ?? 0,
+    //   icon: Package,
+    //   desc: "Product pages live",
+    //   color: "text-blue-600",
+    // },
+    // {
+    //   title: "Service Offerings",
+    //   value: services.fetchAll.data?.length ?? 0,
+    //   icon: Wrench,
+    //   desc: "Services pages live",
+    //   color: "text-purple-600",
+    // },
+    // {
+    //   title: "Projects Showcase",
+    //   value: projects.fetchAll.data?.length ?? 0,
+    //   icon: FolderKanban,
+    //   desc: "Portfolio items",
+    //   color: "text-green-600",
+    // },
     {
       title: "Pending Inquiries",
       value: pendingInquiries,

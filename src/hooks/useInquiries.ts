@@ -47,7 +47,7 @@ export const useInquiries = () => {
   return useQuery<Inquiry[]>({
     queryKey: ['inquiries'],
     queryFn: async () => {
-      const { data } = await api.get('/inquiries');
+      const { data } = await api.get('/contact/inquiries');
       return data;
     },
   });
