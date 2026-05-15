@@ -37,7 +37,7 @@ export default function AdminGallery() {
       <div className="flex justify-between items-center mb-10">
         <h1 className="text-3xl font-bold text-happy-dark">Admin Gallery Manager</h1>
         <CldUploadWidget 
-          uploadPreset="happy_feet_preset" 
+         uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
           options={{ resourceType: "auto" }} 
           onSuccess={handleUpload}
         >
